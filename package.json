@@ -1,0 +1,51 @@
+{
+  "name": "@myreach/migrate",
+  "version": "0.0.0",
+  "description": "Migrate through scripts the elasticsearch schema",
+  "main": "dist/src/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "migrate": "./dist/src/index.js",
+    "ts-migrate": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:myreach/migrate.git"
+  },
+  "scripts": {
+    "cli": "node .",
+    "build": "tsc -p tsconfig.json",
+    "clean": "gts clean",
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "check": "gts check",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.5.0",
+    "chalk": "^3.0.0",
+    "cli-select": "^1.1.1",
+    "clipanion": "^2.1.3",
+    "console-table-printer": "^1.1.52",
+    "fs-extra": "^8.1.0",
+    "neo4j-driver": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^8.1.0",
+    "@types/node": "^10.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "ts-node": "^8.4.1",
+    "typescript": "~3.7.0",
+    "gts": "^1.1.2"
+  }
+}

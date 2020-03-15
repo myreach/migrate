@@ -1,0 +1,70 @@
+
+= migrate
+:toc:
+
+
+
+== Introduction
+
+*migrate* is a tool to execute Elastic Search scripts to migrate data.
+The tool can:
+
+* execute all the migrations
+* undo all the migrations
+* undo single migration
+* read migration files
+* load config from migrate-config.js file (by default)
+* list the migrations (pending or executed)
+
+The tool saves the state in a index, and runs *only* the migrations that are pending.
+
+== How to use it?
+
+To run CLI:
+
+
+
+Use one or the other for executing migrations.
+
+== Initialize the tool in new package/repo:
+
+Executing `es-migrate init` will launch a quiz to config the tool.
+
+== List migrations:
+
+With `es-migrate list` will list all the migrations executed and pending.
+
+== Run migrations:
+
+With `es-migrate up` will execute each one of the migrations.
+
+To undo all migrations by order, you can use `es-migrate down`.
+
+To undo one migration you can use `es-migrate undo`, a list will appear before the undoing 😀
+
+To use another configuration file, you must specify the -c or --config parameter. Example:
+`es-migrate up --config es-migrate-config.prod.js`.
+
+== Config: (migrate-config.js)
+
+.migrate-config.js
+[source,javascript]
+----
+const { Client } = require('@elastic/elasticsearch');
+
+module.exports = {
+	elasticSearchClient: new Client({  // <1>
+		node: 'http://localhost:9200',
+	}),
+
+	options: {
+		root: './dist', // <2>
+		filter: /.*\.es-migration\.js$/, // <3>
+		indexName: 'migrations', // <4>
+	},
+};
+----
+<1> In the config file is declared the client for Elastic-Search.
+<2> root path to search and generate migration files.
+<3> filter to match migrations.
+<4> the name of the index used to store the migrations execution.
