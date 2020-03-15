@@ -1,3 +1,2 @@
-export const getMigrations = (labelName:string):string => {
-    return `MATCH (n:${labelName}) RETURN n`;
-};
+export const getMigrations = (labelName: string): string =>
+  `MATCH (n:${labelName}) RETURN n`;

@@ -1,5 +1,4 @@
-export const makeTemplate = (name: string, timestamp: number): string => {
-	return `
+export const makeTemplate = (name: string, timestamp: number): string => `
 import { MigrationInterface } from '@reach/es-migrate/src/migration/migration-interface';
 import { Client } from '@elastic/elasticsearch';
 
@@ -13,4 +12,3 @@ export default class ${name + timestamp} implements MigrationInterface {
 }
 
 `;
-};

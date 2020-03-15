@@ -1,13 +1,13 @@
-import { walk } from '../utils/walk';
-import { resolve } from 'path';
-import { Migration } from '../migration/migration';
-import { isMigrationInterface } from '../migration/migration-file-interface';
-import { MigrationReader } from './migration-reader-interface';
+import { resolve } from "path";
+import { walk } from "../utils/walk";
+import { Migration } from "../migration/migration";
+import { isMigrationInterface } from "../migration/migration-file-interface";
+import { MigrationReader } from "./migration-reader-interface";
 
 export class MigrationFileSystemReader implements MigrationReader {
   constructor(
     public path = process.cwd(),
-    public pattern: string | RegExp = '.*\\.es-migration\\.js$'
+    public pattern: string | RegExp = ".*\\.es-migration\\.js$"
   ) {}
 
   private async getMatchingFiles(
@@ -31,7 +31,7 @@ export class MigrationFileSystemReader implements MigrationReader {
     );
     const migrations = migrationsRaw
       // Instance the migration
-        // @ts-ignore
+      // @ts-ignore
       .map(migration => new migration())
       // Filter the instances that are malformed
       .filter(migration => isMigrationInterface(migration))

@@ -1,6 +1,6 @@
-export interface MigrationReadDTO{
-    name:string;
-    id: string;
-    timestamp:string;
-    executedAt:Date;
+export interface MigrationReadDTO {
+  name: string;
+  id: string;
+  timestamp: string;
+  executedAt: Date;
 }

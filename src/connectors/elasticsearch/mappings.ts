@@ -2,14 +2,14 @@ export const mappings = {
   mappings: {
     properties: {
       name: {
-        type: 'text',
+        type: "text"
       },
       timestamp: {
-        type: 'long',
+        type: "long"
       },
       executedAt: {
-        type: 'date',
-      },
-    },
-  },
+        type: "date"
+      }
+    }
+  }
 };

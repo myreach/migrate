@@ -1,9 +1,8 @@
 export const makeConfigurationTemplate = (t: {
-	url: string;
-	root: string;
-	fileFilter: string;
-}): string => {
-	return `const { Client } = require('@elastic/elasticsearch');
+  url: string;
+  root: string;
+  fileFilter: string;
+}): string => `const { Client } = require('@elastic/elasticsearch');
 
 module.exports = {
 	elasticSearchClient: new Client({
@@ -19,4 +18,3 @@ module.exports = {
 
 export options;
 `;
-};

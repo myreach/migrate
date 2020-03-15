@@ -1,24 +1,26 @@
-import { MigrationFileInterface } from './migration-file-interface';
+import { MigrationFileInterface } from "./migration-file-interface";
 
 export enum StatusEnum {
-	PENDING = 'PENDING',
-	EXECUTED = 'EXECUTED',
+  PENDING = "PENDING",
+  EXECUTED = "EXECUTED"
 }
 
 export class Migration {
-	id: string;
-	status?: StatusEnum;
-	executedAt?: Date;
+  id: string;
 
-	constructor(
-		public timestamp: number,
-		public name: string,
-		public instance?: MigrationFileInterface,
-		executedAt?: string
-	) {
-		this.id = timestamp.toString(10) + '-' + name;
-		if (executedAt) {
-			this.executedAt = new Date(executedAt);
-		}
-	}
+  status?: StatusEnum;
+
+  executedAt?: Date;
+
+  constructor(
+    public timestamp: number,
+    public name: string,
+    public instance?: MigrationFileInterface,
+    executedAt?: string
+  ) {
+    this.id = `${timestamp.toString(10)}-${name}`;
+    if (executedAt) {
+      this.executedAt = new Date(executedAt);
+    }
+  }
 }
