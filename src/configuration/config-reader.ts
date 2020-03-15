@@ -1,4 +1,4 @@
-import { EsMigrationsConfig } from './es-migrations-config.interface';
+import { EsMigrationsConfig } from './migrations-config.interface';
 
 import { pathExists } from 'fs-extra';
 import { resolve } from 'path';

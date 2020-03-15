@@ -1,4 +1,4 @@
-import { EsMigrationsConfig } from './src/configuration/es-migrations-config.interface';
+import { EsMigrationsConfig } from './src/configuration/migrations-config.interface';
 
 const { Client } = require('@elastic/elasticsearch');
 

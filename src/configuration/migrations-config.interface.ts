@@ -16,7 +16,12 @@ export interface MigrationsOptions {
 	indexName: string;
 }
 
-export interface EsMigrationsConfig {
+export interface MigrationsConfig {
+	/**
+	 * Instance of the client is going to be used
+	 */
+	elasticSearchClient: Client;
+
 	/**
 	 * Instance of the client is going to be used
 	 */

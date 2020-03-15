@@ -1,4 +1,4 @@
-import { EsMigrationsConfig } from '../configuration/es-migrations-config.interface';
+import { EsMigrationsConfig } from '../configuration/migrations-config.interface';
 import { Client } from '@elastic/elasticsearch';
 import { Migration } from './migration';
 import { Writable } from 'stream';
