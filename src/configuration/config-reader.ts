@@ -6,17 +6,17 @@ import { MigrationsConfig } from "./migrations-config.interface";
  * Connection Options Reader is responsible of reading the options found in root
  */
 export class ConfigReader {
-  constructor() {}
+  constructor(private configurationFilePath = "migrate-config.js") {}
 
-  async load(filepath = "migrate-config.js"): Promise<MigrationsConfig> {
+  async load(): Promise<MigrationsConfig> {
     let options: MigrationsConfig;
 
-    const path = resolve(".", filepath);
+    const path = resolve(".", this.configurationFilePath);
 
     if (await pathExists(path)) {
       options = await import(path);
     } else {
-      throw new Error(`Path does not exist: ${path}`);
+      throw new Error(`Configuration file does not exist: ${path}`);
     }
 
     await this.checkOptions(options);
