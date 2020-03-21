@@ -1,7 +1,7 @@
 import { MigrationWriteDTO } from "../../dto/migration-write";
 
 export class Neo4jQueries {
-  constructor(private labelName = "Migrations") {}
+  constructor(private labelName = "Migration") {}
 
   create = (migration: MigrationWriteDTO): string => `
     CREATE (n:${this.labelName}: {
