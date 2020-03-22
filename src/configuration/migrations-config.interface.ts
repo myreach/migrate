@@ -21,12 +21,12 @@ export interface MigrationsConfig {
   /**
    * Instance of the client is going to be used with elastic
    */
-  elasticSearchClient: Client;
+  elasticSearchClient: () => Client;
 
   /**
    * Instance of the client is going to be used with neo4h
    */
-  neo4jDriver: Driver;
+  neo4jDriver: () => Driver;
 
   /**
    * Options of the migrations

@@ -25,9 +25,10 @@ export class ConfigReader {
   }
 
   async checkOptions(config: MigrationsConfig) {
-    if (!(await config.elasticSearchClient.ping())) {
-      throw new Error("Cannot ping to elastic search node");
-    }
+    // TODO: separate concern of checking connection from config
+    // if (!(await config.elasticSearchClient.ping())) {
+    //   throw new Error("Cannot ping to elastic search node");
+    // }
 
     if (!config.options.indexName) {
       throw new Error("Index Name not defined");
