@@ -1,4 +1,4 @@
-import { MigrationTemplate } from "./migration-template";
+import {MigrationTemplate} from '../../generate/migration-template';
 
 export class Neo4jTemplate implements MigrationTemplate {
   constructor(

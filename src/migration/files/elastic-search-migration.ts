@@ -1,5 +1,5 @@
-import { MigrationFileInterface } from "./migration-file-interface";
-import { Client } from "@elastic/elasticsearch";
+import {MigrationFileInterface} from './migration-file-interface';
+import {Client} from '@elastic/elasticsearch';
 
 export abstract class ElasticSearchMigration
   implements MigrationFileInterface<Client> {

@@ -1,8 +1,8 @@
-import { MigrationFileInterface } from "./migration-file-interface";
+import {MigrationFileInterface} from './migration-file-interface';
 
 export enum StatusEnum {
-  PENDING = "PENDING",
-  EXECUTED = "EXECUTED"
+  PENDING = 'PENDING',
+  EXECUTED = 'EXECUTED',
 }
 
 export class Migration {

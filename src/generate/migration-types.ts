@@ -1,1 +1,1 @@
-export type MigrationTypes = "es" | "neo4j";
+export type MigrationTypes = 'es' | 'neo4j';

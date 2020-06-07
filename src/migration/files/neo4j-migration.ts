@@ -1,5 +1,5 @@
-import { MigrationFileInterface } from "./migration-file-interface";
-import { Transaction } from "neo4j-driver";
+import {MigrationFileInterface} from './migration-file-interface';
+import {Transaction} from 'neo4j-driver';
 
 export abstract class Neo4jMigration
   implements MigrationFileInterface<Transaction> {

@@ -1,34 +1,34 @@
-import { Command } from "clipanion";
-import { pathExists, writeFile } from "fs-extra";
-import { resolve } from "path";
-import { makeConfigurationTemplate } from "../templates/configuration-template";
-import { readlinePromise } from "../utils/readline-promise";
+import {Command} from 'clipanion';
+import {pathExists, writeFile} from 'fs-extra';
+import {resolve} from 'path';
+import {makeConfigurationTemplate} from '../templates/configuration-template';
+import {readlinePromise} from '../utils/readline-promise';
 
-const rl = require("readline");
+import rl = require('readline');
 
 export class InitCommand extends Command {
   static usage = Command.Usage({
-    description: "Initialize configuration",
+    description: 'Initialize configuration',
     details:
-      "The cli will ask some questions about the configuration through a new CLI experience.",
-    examples: [["Initialize configuration", "es-migration init"]]
+      'The cli will ask some questions about the configuration through a new CLI experience.',
+    examples: [['Initialize configuration', 'es-migration init']],
   });
 
-  @Command.Path("init")
+  @Command.Path('init')
   async execute() {
     let readline = rl.createInterface({
       input: process.stdin,
       output: process.stdout,
-      terminal: true
+      terminal: true,
     });
 
     readline = readlinePromise(readline);
     let root = await readline.questionAsync(
-      "Choose root path where the migrations will be placed: (default: . ): "
+      'Choose root path where the migrations will be placed: (default: . ): '
     );
 
-    if (root === "") {
-      root = ".";
+    if (root === '') {
+      root = '.';
     }
 
     // let fileFilter = await readline.questionAsync(
@@ -40,21 +40,21 @@ export class InitCommand extends Command {
     // }
 
     let url = await readline.questionAsync(
-      "Choose elastic-search url: (default: http://localhost:9200): "
+      'Choose elastic-search url: (default: http://localhost:9200): '
     );
 
-    if (url === "") {
-      url = "http://localhost:9200";
+    if (url === '') {
+      url = 'http://localhost:9200';
     }
 
-    const path = resolve(".", "migrate-config.js");
+    const path = resolve('.', 'migrate-config.js');
 
     let writeToFile = true;
     if (await pathExists(path)) {
       const response = await readline.questionAsync(
-        "Path already exists. Overwrite? [y/n]: "
+        'Path already exists. Overwrite? [y/n]: '
       );
-      writeToFile = response === "y" || response === "Y";
+      writeToFile = response === 'y' || response === 'Y';
     }
 
     readline.close();
@@ -65,11 +65,11 @@ export class InitCommand extends Command {
         makeConfigurationTemplate({
           url,
           root,
-          fileFilter: "/.*.es-migration.ts$/"
+          fileFilter: '/.*.es-migration.ts$/',
         })
       );
     } else {
-      this.context.stdout.write("Aborting");
+      this.context.stdout.write('Aborting');
     }
   }
 }

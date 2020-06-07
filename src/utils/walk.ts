@@ -1,6 +1,6 @@
-import { promises as fs } from "fs";
+import {promises as fs} from 'fs';
 
-const path = require("path");
+const path = require('path');
 
 export const walk = async (dir: string) => {
   let files = await fs.readdir(dir);

@@ -1,15 +1,15 @@
-import { Migration, StatusEnum } from "./migration";
+import {Migration, StatusEnum} from './migration';
 
-const { Table } = require("console-table-printer");
+const {Table} = require('console-table-printer');
 
 export const migrationTable = (m: Migration[]) => {
   const p = new Table();
   m.forEach(migration => {
-    const color = { color: "" };
+    const color = {color: ''};
     if (migration.status === StatusEnum.EXECUTED) {
-      color.color = "green";
+      color.color = 'green';
     } else {
-      color.color = "yellow";
+      color.color = 'yellow';
     }
 
     p.addRow(
@@ -17,7 +17,7 @@ export const migrationTable = (m: Migration[]) => {
         name: migration.name,
         timestamp: migration.timestamp,
         status: migration.status,
-        executedAt: migration.executedAt ? migration.executedAt.toString() : ""
+        executedAt: migration.executedAt ? migration.executedAt.toString() : '',
       },
       color
     );

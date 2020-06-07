@@ -1,24 +1,24 @@
-import { Command } from "clipanion";
-import { MigrationReader } from "../migration/migration-reader";
-import { ConfigReader } from "../configuration/config-reader";
-import { MigrationComparer } from "../migration/migration-comparer";
-import { MigrationRunner } from "../migration/migration-runner";
-import { StatusEnum } from "../migration/migration";
+import {Command} from 'clipanion';
+import {MigrationReader} from '../migration/migration-reader';
+import {ConfigReader} from '../configuration/config-reader';
+import {MigrationComparer} from '../migration/migration-comparer';
+import {MigrationRunner} from '../migration/migration-runner';
+import {StatusEnum} from '../migration/migration';
 
-const cliSelect = require("cli-select");
-const chalk = require("chalk");
+const cliSelect = require('cli-select');
+const chalk = require('chalk');
 
 export class UndoCommand extends Command {
   static usage = Command.Usage({
-    description: "undo migration",
-    details: "Undo last executed migration (with the highest timestamp",
-    examples: [["Undo last migration", "es-migration undo"]]
+    description: 'undo migration',
+    details: 'Undo last executed migration (with the highest timestamp',
+    examples: [['Undo last migration', 'es-migration undo']],
   });
 
-  @Command.String("--config")
+  @Command.String('--config')
   public configPath?: string;
 
-  @Command.Path("undo")
+  @Command.Path('undo')
   async execute() {
     const config = await ConfigReader.load(this.configPath);
     const elastic = new MigrationRunner(config, this.context.stdout);
@@ -32,7 +32,7 @@ export class UndoCommand extends Command {
       .sort((a, b) => b.timestamp - a.timestamp)
       .filter(migration => migration.status === StatusEnum.EXECUTED);
 
-    console.log("Please select the migration to undo:");
+    console.log('Please select the migration to undo:');
     const selected = await cliSelect({
       values: migration.map(m => m.id),
       indentation: 2,
@@ -43,7 +43,7 @@ export class UndoCommand extends Command {
         }
 
         return value;
-      }
+      },
     });
 
     console.log(selected);
@@ -52,12 +52,12 @@ export class UndoCommand extends Command {
     const migrationToUndo = migration[selected.id];
 
     if (!migrationToUndo) {
-      console.log("Cannot find migration.");
+      console.log('Cannot find migration.');
     }
 
     console.log(`The migration to undo is: ${migrationToUndo.id}.`);
     const validate = await cliSelect({
-      values: ["yes", "no"],
+      values: ['yes', 'no'],
       indentation: 2,
       cleanup: true,
       valueRenderer: (value: any, selected: any) => {
@@ -66,10 +66,10 @@ export class UndoCommand extends Command {
         }
 
         return value;
-      }
+      },
     });
 
-    if (validate.value === "yes") {
+    if (validate.value === 'yes') {
       await elastic.delete(migrationToUndo);
     }
   }

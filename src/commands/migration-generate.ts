@@ -1,23 +1,23 @@
-import { Command } from "clipanion";
-import { ConfigReader } from "../configuration/config-reader";
-import { generateMigration } from "../migration/generate-migration";
+import {Command} from 'clipanion';
+import {ConfigReader} from '../configuration/config-reader';
+import {generateMigration} from '../migration/generate-migration';
 
 export class MigrationGenerate extends Command {
   static usage = Command.Usage({
-    description: "generate migration",
-    details: "generate migration template with the name specified",
-    examples: [["Generate Basic Migration", "es-migration generate document"]]
+    description: 'generate migration',
+    details: 'generate migration template with the name specified',
+    examples: [['Generate Basic Migration', 'es-migration generate document']],
   });
 
-  @Command.String("-c,--config")
+  @Command.String('-c,--config')
   public configPath?: string;
 
   @Command.String({
-    required: true
+    required: true,
   })
   public name!: string;
 
-  @Command.Path("generate")
+  @Command.Path('generate')
   async execute() {
     const configReader = new ConfigReader();
     const config = await configReader.load(this.configPath);

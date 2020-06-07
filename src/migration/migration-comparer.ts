@@ -1,6 +1,6 @@
-import { MigrationReader } from "./migration-reader";
-import { MigrationRunner } from "./migration-runner";
-import { Migration, StatusEnum } from "./migration";
+import {MigrationReader} from './migration-reader';
+import {MigrationRunner} from './migration-runner';
+import {Migration, StatusEnum} from './migration';
 
 export class MigrationComparer {
   constructor(

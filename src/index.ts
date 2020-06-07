@@ -1,13 +1,13 @@
-import { Cli } from "clipanion";
+import {Cli} from 'clipanion';
 
-import { bin, version } from "../package.json";
+import {bin, version} from '../package.json';
 
-import * as commands from "./commands/index";
+import * as commands from './commands/index';
 
 const cli = new Cli({
-  binaryLabel: "Migrations",
+  binaryLabel: 'Migrations',
   binaryName: Object.keys(bin)[0],
-  binaryVersion: version
+  binaryVersion: version,
 });
 
 for (const command of Object.keys(commands)) {
@@ -18,5 +18,5 @@ for (const command of Object.keys(commands)) {
 cli.runExit(process.argv.slice(2), {
   stdin: process.stdin,
   stdout: process.stdout,
-  stderr: process.stderr
+  stderr: process.stderr,
 });

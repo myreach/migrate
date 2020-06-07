@@ -1,14 +1,14 @@
-const { Client } = require("@elastic/elasticsearch");
+const {Client} = require('@elastic/elasticsearch');
 
 module.exports = {
   elasticSearchClient: () =>
     new Client({
-      node: "http://localhost:9200"
+      node: 'http://localhost:9200',
     }),
 
   options: {
-    root: ".",
+    root: '.',
     filter: /.*\.es-migration\.js$/,
-    indexName: "migrations"
-  }
+    indexName: 'migrations',
+  },
 };

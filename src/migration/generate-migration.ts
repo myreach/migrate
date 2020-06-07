@@ -1,8 +1,8 @@
-import { writeFile } from "fs-extra";
-import { resolve } from "path";
-import { makeTemplate } from "../templates/migration-template";
-import { PascalCase } from "../utils/pascal-case";
-import { toKebabCase } from "../utils/kebab-case";
+import {writeFile} from 'fs-extra';
+import {resolve} from 'path';
+import {makeTemplate} from '../templates/migration-template';
+import {PascalCase} from '../utils/pascal-case';
+import {toKebabCase} from '../utils/kebab-case';
 
 export const generateMigration = async (path: string, name: string) => {
   const timestamp = Date.now();

@@ -1,21 +1,21 @@
-import { Command } from "clipanion";
-import { ConfigReader } from "../configuration/config-reader";
-import { MigrationRunner } from "../migration/migration-runner";
-import { MigrationComparer } from "../migration/migration-comparer";
-import { MigrationReader } from "../migration/migration-reader";
-import { migrationTable } from "../migration/migration-table";
+import {Command} from 'clipanion';
+import {ConfigReader} from '../configuration/config-reader';
+import {MigrationRunner} from '../migration/migration-runner';
+import {MigrationComparer} from '../migration/migration-comparer';
+import {MigrationReader} from '../migration/migration-reader';
+import {migrationTable} from '../migration/migration-table';
 
 export class MigrationList extends Command {
   static usage = Command.Usage({
-    description: "list all migrations",
-    details: "details",
-    examples: [["msg", "command"]]
+    description: 'list all migrations',
+    details: 'details',
+    examples: [['msg', 'command']],
   });
 
-  @Command.String("--config")
+  @Command.String('--config')
   public configPath?: string;
 
-  @Command.Path("list")
+  @Command.Path('list')
   async execute() {
     const config = await ConfigReader.load(this.configPath);
     const elastic = new MigrationRunner(config, this.context.stdout);
@@ -31,7 +31,7 @@ export class MigrationList extends Command {
       );
       migrationTable(sortedMigrations);
     } else {
-      this.context.stdout.write("There is no migrations.");
+      this.context.stdout.write('There is no migrations.');
     }
   }
 }

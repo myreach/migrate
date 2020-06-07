@@ -1,4 +1,4 @@
-import { Client } from "@elastic/elasticsearch";
+import {Client} from '@elastic/elasticsearch';
 
 export interface MigrationFileInterface<ClientType> {
   name: string;
@@ -10,13 +10,13 @@ export interface MigrationFileInterface<ClientType> {
 export const isMigrationInterface = <T>(
   elem: any
 ): elem is MigrationFileInterface<T> =>
-  typeof elem === "object" &&
+  typeof elem === 'object' &&
   elem !== null &&
   elem.name &&
-  typeof elem.name === "string" &&
+  typeof elem.name === 'string' &&
   elem.timestamp &&
-  typeof elem.timestamp === "number" &&
+  typeof elem.timestamp === 'number' &&
   elem.up &&
-  typeof elem.up === "function" &&
+  typeof elem.up === 'function' &&
   elem.down &&
-  typeof elem.down === "function";
+  typeof elem.down === 'function';

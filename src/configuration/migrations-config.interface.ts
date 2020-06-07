@@ -1,5 +1,5 @@
-import { Client } from "@elastic/elasticsearch";
-import { Driver } from "neo4j-driver";
+import {Client} from '@elastic/elasticsearch';
+import {Driver} from 'neo4j-driver';
 
 export interface MigrationsOptions {
   /*

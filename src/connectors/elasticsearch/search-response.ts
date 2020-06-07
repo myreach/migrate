@@ -1,7 +1,7 @@
 // Define the type of the body for the Search request
 interface SearchBody {
   query: {
-    match: { foo: string };
+    match: {foo: string};
   };
 }
 
