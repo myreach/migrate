@@ -1,6 +1,7 @@
 import {Command} from 'clipanion';
 import {ConfigReader} from '../configuration/config-reader';
-import {generateMigration} from '../migration/generate-migration';
+import {MigrationTypes} from '../generate/migration-types';
+import {generate} from '../generate';
 
 export class MigrationGenerate extends Command {
   static usage = Command.Usage({
@@ -15,19 +16,25 @@ export class MigrationGenerate extends Command {
   @Command.String({
     required: true,
   })
+  public type!: MigrationTypes;
+
+  @Command.String({
+    required: true,
+  })
   public name!: string;
 
   @Command.Path('generate')
   async execute() {
-    const configReader = new ConfigReader();
-    const config = await configReader.load(this.configPath);
-    try {
-      const path = await generateMigration(config.options.root, this.name);
-      this.context.stdout.write(
-        `Migration created successfully located in ${path}\n`
-      );
-    } catch (err) {
-      throw err;
-    }
+    const configReader = new ConfigReader(this.configPath);
+    const config = await configReader.load();
+    const path = await generate({
+      name: this.name,
+      type: this.type,
+      config,
+      timestamp: Date.now(),
+    });
+    this.context.stdout.write(
+      `Migration created successfully located in ${path}\n`
+    );
   }
 }

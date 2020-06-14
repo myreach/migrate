@@ -31,6 +31,7 @@ export class MigrationFileSystemReader implements MigrationReader {
     );
     const migrations = migrationsRaw
       // Instance the migration
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       .map(migration => new migration())
       // Filter the instances that are malformed

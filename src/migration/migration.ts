@@ -18,7 +18,7 @@ export class Migration {
     public instance?: MigrationFileInterface,
     executedAt?: string
   ) {
-    this.id = `${timestamp.toString(10)}-${name}`;
+    this.id = `${timestamp}-${name}`;
     if (executedAt) {
       this.executedAt = new Date(executedAt);
     }

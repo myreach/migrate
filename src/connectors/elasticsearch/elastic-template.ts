@@ -1,4 +1,4 @@
-import { MigrationTemplate } from "../../generate/migration-template";
+import {MigrationTemplate} from '../../generate/migration-template';
 
 export class ElasticTemplate implements MigrationTemplate {
   constructor(

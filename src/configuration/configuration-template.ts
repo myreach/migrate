@@ -6,20 +6,19 @@ export const makeConfigurationTemplate = (t: {
 const { driver, auth } = require('neo4j-driver');
 
 module.exports = {
-	elasticSearchClient: () => 
+  connections: {
+    elastic: () =>
       new Client({
-          node: '${t.url}',
+        node: 'http://localhost:9200',
       }),
+    neo: () => driver('bolt://localhost:7687', auth.basic('neo4j', 'reach')),
+  },
 
-
-	neo4jDriver: () => 
-      driver('url', auth.basic('user','pwd'), {});
-
-	options: {
-		root: '${t.root}',
-		filter: ${t.fileFilter},
-		indexName: 'migrations',
-	},
+  options: {
+    root: '${t.root}',
+    filter: ${t.fileFilter},
+    indexName: 'migrations',
+  },
 };
 
 export options;

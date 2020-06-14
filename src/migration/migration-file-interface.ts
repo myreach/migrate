@@ -8,7 +8,7 @@ export interface MigrationFileInterface {
 }
 
 export const isMigrationInterface = (
-  elem: unknown
+  elem: any
 ): elem is MigrationFileInterface =>
   typeof elem === 'object' &&
   elem !== null &&

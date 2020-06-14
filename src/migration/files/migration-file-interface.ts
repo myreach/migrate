@@ -1,5 +1,3 @@
-import {Client} from '@elastic/elasticsearch';
-
 export interface MigrationFileInterface<ClientType> {
   name: string;
   timestamp: number;

@@ -1,5 +1,4 @@
-import {Client} from '@elastic/elasticsearch';
-import {Driver} from 'neo4j-driver';
+import {ConnectionConfig} from './connection-config';
 
 export interface MigrationsOptions {
   /*
@@ -18,16 +17,7 @@ export interface MigrationsOptions {
 }
 
 export interface MigrationsConfig {
-  /**
-   * Instance of the client is going to be used with elastic
-   */
-  elasticSearchClient: () => Client;
-
-  /**
-   * Instance of the client is going to be used with neo4h
-   */
-  neo4jDriver: () => Driver;
-
+  connections: {[key: string]: ConnectionConfig};
   /**
    * Options of the migrations
    */

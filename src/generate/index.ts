@@ -6,11 +6,12 @@ import {resolve} from 'path';
 import {paramCase, pascalCase} from 'change-case';
 import {writeFile} from 'fs-extra';
 import {TemplateNotFound} from './template-not-found';
-import { ElasticTemplate } from '../connectors/elasticsearch/elastic-template';
+import {ElasticTemplate} from '../connectors/elasticsearch/elastic-template';
+import {MigrationsConfig} from '../configuration/migrations-config.interface';
 
 interface GenerateOptionsInterface {
   type: MigrationTypes;
-  configPath?: string;
+  config: MigrationsConfig;
   name: string;
   timestamp?: number;
 }
@@ -21,13 +22,10 @@ const nameTemplate = (name: string, timestamp = Date.now()): string => {
 
 export const generate = async ({
   type,
-  configPath,
+  config,
   name,
   timestamp = Date.now(),
-}: GenerateOptionsInterface) => {
-  const configReader = new ConfigReader(configPath);
-  const config = await configReader.load();
-
+}: GenerateOptionsInterface): Promise<string> => {
   let migration: MigrationTemplate;
 
   if (!name) {
@@ -48,4 +46,6 @@ export const generate = async ({
   const filepath = resolve(config.options.root, fileName);
 
   await writeFile(filepath, migration.template());
+
+  return filepath;
 };

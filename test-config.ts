@@ -1,11 +1,17 @@
-import {EsMigrationsConfig} from './src/configuration/migrations-config.interface';
+import {MigrationsConfig} from './src/configuration/migrations-config.interface';
 
-const {Client} = require('@elastic/elasticsearch');
+import {Client} from '@elastic/elasticsearch';
 
-const options: EsMigrationsConfig = {
-  elasticSearchClient: new Client({
-    node: 'http://localhost:9200',
-  }),
+const options: MigrationsConfig = {
+  connections: {
+    elastic: {
+      client: () =>
+        new Client({
+          node: 'http://localhost:9200',
+        }),
+      type: 'elastic',
+    },
+  },
 
   options: {
     root: './src',

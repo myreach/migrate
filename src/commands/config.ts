@@ -15,7 +15,9 @@ export class ConfigCommand extends Command {
   async execute() {
     this.context.stdout.write('config!\n');
 
-    const options = await ConfigReader.load(this.configPath);
+    const configReader = new ConfigReader(this.configPath);
+
+    const options = await configReader.load();
 
     this.context.stdout.write(JSON.stringify(options));
   }

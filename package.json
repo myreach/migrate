@@ -1,9 +1,9 @@
 {
   "name": "@myreach/migrate",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Migrate through scripts the elasticsearch schema",
-  "main": "dist/src/index.js",
-  "types": "dist/index.d.ts",
+  "main": "build/src/index.js",
+  "types": "build/index.d.ts",
   "bin": {
     "migrate": "./dist/src/index.js",
     "ts-migrate": "./src/index.js"

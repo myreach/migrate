@@ -5,11 +5,10 @@ import {ConnectorInterface} from '../connector-interface';
 import {Neo4jQueries} from './neo4j-queries';
 
 export class Neo4jConnector implements ConnectorInterface {
-  constructor(
-    private client: Transaction,
-    private queryBuilder: Neo4jQueries
-  ) {}
-
+  private queryBuilder: Neo4jQueries;
+  constructor(private client: Transaction, private indexName = 'migration') {
+    this.queryBuilder = new Neo4jQueries(this.indexName);
+  }
   create = async (migration: MigrationWriteDTO): Promise<void> => {
     const query = this.queryBuilder.create(migration);
     await this.client.run(query);
